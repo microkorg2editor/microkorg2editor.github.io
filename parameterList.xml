@@ -1,0 +1,39 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+<MK2ParameterList>
+
+<parameter>
+  <name>Mod Wheel</name>
+  <min>0</min>
+  <max>127</max>
+  <CC>0</CC>
+</parameter> 
+
+<parameter>
+  <name>Timbre Volume</name>
+  <min>0</min>
+  <max>127</max>
+  <CC>7</CC>
+</parameter> 
+
+<parameter>
+  <name>Timbre Pan</name>
+  <min>0</min>
+  <max>127</max>
+  <CC>10</CC>
+</parameter> 
+
+<parameter>
+  <name>Portamento Time</name>
+  <min>0</min>
+  <max>127</max>
+  <CC>5</CC>
+</parameter> 
+
+<parameter>
+  <name>Portamento Mode</name>
+  <min>0</min>
+  <max>1</max>
+  <CC>65</CC>
+</parameter> 
+
+</MK2ParameterList>

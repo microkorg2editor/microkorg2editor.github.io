@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>microKORG2 Editor</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <b>Inputs:</b> <select id="selectIn"></select><br>
+    <b>Outputs:</b> <select id="selectOut"></select>
+
+    <h2>Parameters</h2>
+    <input type="file" id="xmlfile">
+    <input type="range" min="0" max="127" value="50" class="slider" id="volumeSlider" oninput="sliderChange(this.value)">
+    <button class="SEND CC 7" onclick="sendCC7(event)">SENDCC7</button>
+    <script src="app.js" defer></script>
+    <script src='https://cwilso.github.io/WebMIDIAPIShim/build/WebMIDIAPI.min.js'></script>
+    <noscript>You need to enable JavaScript to view the full site.</noscript>
+</body>
+</html>
