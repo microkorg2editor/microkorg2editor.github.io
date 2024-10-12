@@ -5,7 +5,7 @@ let midiOut = [];
 let notesOn = new Map(); 
 
 connect();
-// Load XML
+loadXMLDoc("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.xml");
 
 function connect() 
 {
@@ -98,20 +98,25 @@ function sliderChange(val)
     sendMidiCC(0x0, 0x7, val);
 }
 
-function tableCreate(xmlDocument) 
+function createTable(xmlDocument) 
 {
     const body = document.body, 
     tbl = document.createElement('table');
     tbl.style.width = body.width;
   
-    var x = xmlDocument.getElementsByTagName("parameter");
-    for (let i = 0; i < x.length; i++) 
+    if(xmlDocument)
     {
-      const row = tbl.insertRow();
-      const cell = row.insertCell();
-      cell.innerHTML = x[i].getElementsByTagName("name");
+        var parser = new DOMParser();
+        var parameterXml = parser.parseFromString(xmlDocument, "application/xml");
+        var x = parameterXml.getElementsByTagName("parameter");
+        for (let i = 0; i < x.length; i++) 
+        {
+          const row = tbl.insertRow();
+          const cell = row.insertCell();
+          cell.innerHTML = x[i].getElementsByTagName("name");
+        }
+        body.appendChild(tbl);
     }
-    body.appendChild(tbl);
 }
 
 function loadXMLDoc(filename) 
@@ -124,27 +129,11 @@ function loadXMLDoc(filename)
 
         if (this.readyState === 4 && this.status === 200) 
         { 
-            const xmlDoc = this.responseXML; 
+            const xmlDoc = this.responseText; 
             // Process the XML data here 
-            console.log(xmlDoc); 
+            createTable(xmlDoc);
         } 
     }; 
     xhttp.open("GET", filename, true); 
     xhttp.send(); 
 }
-
-var fileInput = document.querySelector("#xmlfile");
-fileInput.addEventListener("change",function(e)
-{
-    var file = fileInput.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function()
-    {
-      var data = reader.result;
-      //data will now contain the xml text
-      //use DOMParser to parse it
-      var xmlDocument = (new DOMParser()).parseFromString(data,"text/xml");
-      tableCreate(xmlDocument);
-    };
-    reader.readAsText(file);
-  })
