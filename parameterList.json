@@ -12,6 +12,433 @@
             "min": "0",
             "max": "127",
             "CC": 7
+        },
+        {
+            "name": "Timbre Pan",
+            "min": "0",
+            "max": "127",
+            "CC": 10
+        },
+        {
+            "name": "Damper",
+            "min": "0",
+            "max": "127",
+            "CC": 64
+        },
+        {
+            "name": "Portamento Time",
+            "min": "0",
+            "max": "127",
+            "CC": 5
+        },
+        {
+            "name": "Portamento Mode",
+            "min": "0",
+            "max": "127",
+            "CC": 65
+        },
+        {
+            "name": "Unison Detune",
+            "min": "0",
+            "max": "127",
+            "CC": 33
+        },        
+        {
+            "name": "Unison Spread",
+            "min": "0",
+            "max": "127",
+            "CC": 34
+        },
+        {
+            "name": "Transpose",
+            "min": "-24",
+            "max": "24",
+            "CC": 35
+        },        
+        {
+            "name": "Fine Tune",
+            "min": "-50",
+            "max": "50",
+            "CC": 36
+        },
+        {
+            "name": "OSC 1 Wave",
+            "min": "0",
+            "max": "5",
+            "CC": 8
+        },
+        {
+            "name": "OSC 1 Shape",
+            "min": "0",
+            "max": "63",
+            "CC": 9
+        },        
+        {
+            "name": "Osc 1 Mod Amount",
+            "min": "0",
+            "max": "127",
+            "CC": 15
+        },
+        {
+            "name": "OSC 1 Semitone",
+            "min": "-24",
+            "max": "24",
+            "CC": 16
+        },
+        {
+            "name": "OSC 1 Fine Tune",
+            "min": "-50",
+            "max": "50",
+            "CC": 17
+        },        
+        {
+            "name": "Osc 1 Level",
+            "min": "0",
+            "max": "127",
+            "CC": 23
+        },
+        {
+            "name": "OSC 2 Wave",
+            "min": "0",
+            "max": "5",
+            "CC": 18
+        },
+        {
+            "name": "OSC 2 Shape",
+            "min": "0",
+            "max": "63",
+            "CC": 19
+        },        
+        {
+            "name": "Osc 2 Mod Amount",
+            "min": "0",
+            "max": "127",
+            "CC": 20
+        },
+        {
+            "name": "OSC 2 Semitone",
+            "min": "-24",
+            "max": "24",
+            "CC": 21
+        },
+        {
+            "name": "OSC 2 Fine Tune",
+            "min": "-50",
+            "max": "50",
+            "CC": 22
+        },        
+        {
+            "name": "Osc 2 Level",
+            "min": "0",
+            "max": "127",
+            "CC": 24
+        },
+        {
+            "name": "OSC 3 Wave",
+            "min": "0",
+            "max": "5",
+            "CC": 48
+        },
+        {
+            "name": "OSC 3 Shape",
+            "min": "0",
+            "max": "63",
+            "CC": 49
+        },        
+        {
+            "name": "OSC 3 Semitone",
+            "min": "-24",
+            "max": "24",
+            "CC": 51
+        },
+        {
+            "name": "OSC 3 Fine Tune",
+            "min": "-50",
+            "max": "50",
+            "CC": 52
+        },        
+        {
+            "name": "Osc 3 Level",
+            "min": "0",
+            "max": "127",
+            "CC": 25
+        },
+        {
+            "name": "Noise Type",
+            "min": "0",
+            "max": "3",
+            "CC": 29
+        },
+        {
+            "name": "Noise Color",
+            "min": "0",
+            "max": "127",
+            "CC": 30
+        },        
+        {
+            "name": "Noise Level",
+            "min": "0",
+            "max": "127",
+            "CC": 26
+        },
+        {
+            "name": "Filter Type",
+            "min": "0",
+            "max": "127",
+            "CC": 27
+        },        
+        {
+            "name": "Filter Keytrack",
+            "min": "0",
+            "max": "127",
+            "CC": 28
+        },
+        {
+            "name": "Filter Resonance",
+            "min": "0",
+            "max": "127",
+            "CC": 71
+        },
+        {
+            "name": "Filter Cutoff",
+            "min": "0",
+            "max": "127",
+            "CC": 74
+        },        
+        {
+            "name": "Filter Drive",
+            "min": "0",
+            "max": "127",
+            "CC": 83
+        },
+        {
+            "name": "Amp EG Attack",
+            "min": "0",
+            "max": "127",
+            "CC": 73
+        },        
+        {
+            "name": "Amp EG Decay",
+            "min": "0",
+            "max": "127",
+            "CC": 75
+        },
+        {
+            "name": "Amp EG Sustain",
+            "min": "0",
+            "max": "127",
+            "CC": 70
+        },
+        {
+            "name": "Amp EG Release",
+            "min": "0",
+            "max": "127",
+            "CC": 72
+        },        
+        {
+            "name": "Velocity Sens",
+            "min": "0",
+            "max": "127",
+            "CC": 79
+        },
+        
+        {
+            "name": "Filter EG Attack",
+            "min": "0",
+            "max": "127",
+            "CC": 85
+        },        
+        {
+            "name": "Filter EG Decay",
+            "min": "0",
+            "max": "127",
+            "CC": 86
+        },
+        {
+            "name": "Filter EG Sustain",
+            "min": "0",
+            "max": "127",
+            "CC": 87
+        },
+        {
+            "name": "Filter EG Release",
+            "min": "0",
+            "max": "127",
+            "CC": 88
+        },        
+        {
+            "name": "Filter EG Intensity",
+            "min": "0",
+            "max": "127",
+            "CC": 84
+        },
+        {
+            "name": "LFO 1 Wave",
+            "min": "0",
+            "max": "127",
+            "CC": 89
+        },
+        {
+            "name": "LFO 1 Frequency",
+            "min": "0",
+            "max": "127",
+            "CC": 90
+        },        
+        {
+            "name": "LFO 1 Smooth",
+            "min": "0",
+            "max": "127",
+            "CC": 91
+        },
+        {
+            "name": "LFO 2 Wave",
+            "min": "0",
+            "max": "127",
+            "CC": 102
+        },
+        {
+            "name": "LFO 2 Frequency",
+            "min": "0",
+            "max": "127",
+            "CC": 76
+        },        
+        {
+            "name": "LFO 2 Delay",
+            "min": "0",
+            "max": "127",
+            "CC": 92
+        },
+        {
+            "name": "Patch 1 Intensity",
+            "min": "0",
+            "max": "127",
+            "CC": 103
+        },
+        {
+            "name": "Patch 2 Intensity",
+            "min": "0",
+            "max": "127",
+            "CC": 103
+        },
+        {
+            "name": "Patch 3 Intensity",
+            "min": "0",
+            "max": "127",
+            "CC": 103
+        },
+        {
+            "name": "Patch 4 Intensity",
+            "min": "0",
+            "max": "127",
+            "CC": 103
+        },
+        {
+            "name": "Patch 5 Intensity",
+            "min": "0",
+            "max": "127",
+            "CC": 103
+        },
+        {
+            "name": "Patch 6 Intensity",
+            "min": "0",
+            "max": "127",
+            "CC": 103
+        },
+        {
+            "name": "Mod FX Control 1",
+            "min": "0",
+            "max": "127",
+            "CC": 12
+        },
+        {
+            "name": "Mod FX Control 2",
+            "min": "0",
+            "max": "127",
+            "CC": 111
+        },
+        {
+            "name": "Mod FX Control 3",
+            "min": "0",
+            "max": "127",
+            "CC": 112
+        },
+        {
+            "name": "Delay FX Control 1",
+            "min": "0",
+            "max": "127",
+            "CC": 115
+        },
+        {
+            "name": "Delay FX Control 2",
+            "min": "0",
+            "max": "127",
+            "CC": 13
+        },
+        {
+            "name": "Delay FX Control 3",
+            "min": "0",
+            "max": "127",
+            "CC": 113
+        },
+        {
+            "name": "Delay FX Control 4",
+            "min": "0",
+            "max": "127",
+            "CC": 114
+        },
+        {
+            "name": "Reverb FX Control 1",
+            "min": "0",
+            "max": "127",
+            "CC": 118
+        },
+        {
+            "name": "Reverb FX Control 2",
+            "min": "0",
+            "max": "127",
+            "CC": 14
+        },
+        {
+            "name": "Reverb FX Control 3",
+            "min": "0",
+            "max": "127",
+            "CC": 116
+        },
+        {
+            "name": "Reverb FX Control 4",
+            "min": "0",
+            "max": "127",
+            "CC": 117
+        },
+        {
+            "name": "EQ Low Freq",
+            "min": "0",
+            "max": "127",
+            "CC": 95
+        },
+        {
+            "name": "EQ Low Gain",
+            "min": "0",
+            "max": "127",
+            "CC": 110
+        },
+        {
+            "name": "EQ High Freq",
+            "min": "0",
+            "max": "127",
+            "CC": 94
+        },
+        {
+            "name": "EQ High Gain",
+            "min": "0",
+            "max": "127",
+            "CC": 109
+        },
+        {
+            "name": "EQ Feedback",
+            "min": "0",
+            "max": "127",
+            "CC": 93
         }
     ]
 }

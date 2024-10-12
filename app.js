@@ -78,7 +78,7 @@ function startListening()
 {
     for (const input of midiIn) 
     {
-        input.addEventListener('midimessage', midiMessageReceived);
+        // input.addEventListener('midimessage', midiMessageReceived);
     }
 }
 
@@ -93,27 +93,36 @@ function sendMidiCC(Channel, CCNumber, value)
     device.send(msgOn); 
 }
 
-function sliderChange(val) 
+function sliderChange(channel, CC, value) 
 {
-    sendMidiCC(0x0, 0x7, val);
+    sendMidiCC(channel, CC, value);
 }
 
-function createTable(xmlDocument) 
+function createTable(data) 
 {
     const body = document.body, 
     tbl = document.createElement('table');
     tbl.style.width = body.width;
   
-    if(xmlDocument)
+    if(data)
     {
-        var parser = new DOMParser();
-        var parameterXml = parser.parseFromString(xmlDocument, "application/xml");
-        var x = parameterXml.getElementsByTagName("parameter");
-        for (let i = 0; i < x.length; i++) 
+        var parameters = JSON.parse(data).programParameters;
+        for (let i = 0; i < parameters.length; i++) 
         {
           const row = tbl.insertRow();
           const cell = row.insertCell();
-          cell.innerHTML = x[i].getElementsByTagName("name");
+          cell.innerHTML = parameters[i].name;
+
+          var slider = document.createElement("input");
+          slider.type = 'range';
+          slider.min = parameters[i].min;
+          slider.max = parameters[i].max;
+          slider.oninput = function() 
+          {
+            // TODO : channel support
+            sliderChange(0x0, parameters[i].CC, slider.value);
+          }
+          cell.appendChild(slider);
         }
         body.appendChild(tbl);
     }
@@ -129,6 +138,7 @@ function loadJSON(file)
         if (rawFile.readyState === 4 && rawFile.status == "200") 
         {
             console.log(rawFile.responseText);
+            createTable(rawFile.responseText);
         }
     }
     rawFile.send(null);
