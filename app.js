@@ -3,6 +3,7 @@
 let midiIn = [];
 let midiOut = [];
 let notesOn = new Map(); 
+let mParameterData = [];
 
 connect();
 loadJSON("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.json");
@@ -112,15 +113,17 @@ function createTable(data)
           const row = tbl.insertRow();
           const cell = row.insertCell();
           cell.innerHTML = parameters[i].name;
+          mParameterData.push(parameters[i]);
 
           var slider = document.createElement("input");
           slider.type = 'range';
-          slider.min = parameters[i].min;
-          slider.max = parameters[i].max;
+          slider.min = 0;
+          slider.max = 127;
+          slider.id = i;
           slider.oninput = function() 
           {
             // TODO : channel support
-            sliderChange(0x0, parameters[i].CC, slider.value);
+            sliderChange(0x0, mParameterData[this.id].CC, this.value);
           }
           cell.appendChild(slider);
         }
@@ -137,7 +140,6 @@ function loadJSON(file)
     {
         if (rawFile.readyState === 4 && rawFile.status == "200") 
         {
-            console.log(rawFile.responseText);
             createTable(rawFile.responseText);
         }
     }
