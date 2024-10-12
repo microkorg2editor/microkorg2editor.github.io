@@ -5,7 +5,7 @@ let midiOut = [];
 let notesOn = new Map(); 
 
 connect();
-loadXMLDoc("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.xml");
+loadJSON("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.json");
 
 function connect() 
 {
@@ -119,21 +119,17 @@ function createTable(xmlDocument)
     }
 }
 
-function loadXMLDoc(filename) 
-{ 
-    const xhttp = new XMLHttpRequest(); 
-    xhttp.onreadystatechange = function()
-    { 
-        console.log(this.readyState); 
-        console.log(this.status); 
-
-        if (this.readyState === 4 && this.status === 200) 
-        { 
-            const xmlDoc = this.responseText; 
-            // Process the XML data here 
-            createTable(xmlDoc);
-        } 
-    }; 
-    xhttp.open("GET", filename, true); 
-    xhttp.send(); 
+function loadJSON(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() 
+    {
+        if (rawFile.readyState === 4 && rawFile.status == "200") 
+        {
+            console.log(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
 }

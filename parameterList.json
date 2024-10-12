@@ -1,0 +1,20 @@
+{
+    "programParameters" :
+    {
+        "Mod Wheel":
+        {
+            "name": "Mod Wheel",
+            "min": "0",
+            "max": "127",
+            "CC": 0
+        },
+
+        "Timbre Volume":
+        {
+            "name": "Timbre Volume",
+            "min": "0",
+            "max": "127",
+            "CC": 7
+        }
+    }
+}
