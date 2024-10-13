@@ -157,8 +157,8 @@ function createTable(data)
 
             var slider = document.createElement("input");
             slider.type = 'range';
-            slider.min = nrpnParameters.knobMin;
-            slider.max = nrpnParameters.knobMax;
+            slider.min = nrpnParameters[i].knobMin;
+            slider.max = nrpnParameters[i].knobMax;
             slider.id = i;
             slider.oninput = function() 
             {
