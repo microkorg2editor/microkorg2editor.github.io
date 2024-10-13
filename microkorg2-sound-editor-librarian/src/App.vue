@@ -3,10 +3,14 @@
         <v-app-bar>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>microKORG2 Sound Editor/Librarian</v-toolbar-title>
-
             <v-btn @click="midiSettingsDialog = true">
                 <v-icon>mdi-midi-port</v-icon>
                 MIDI Settings
+            </v-btn>
+
+            <v-btn @click="qrCodeReaderDialog = true">
+                <v-icon>mdi-qrcode</v-icon>
+                QR Code Reader
             </v-btn>
 
             <v-btn-toggle v-model="view" class="mr-2">
@@ -50,6 +54,29 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
+
+        <v-dialog v-model="qrCodeReaderDialog" max-width="500">
+            <v-card>
+                <v-card-title>QR Code Reader</v-card-title>
+                <v-card-text>
+                    <qrcode-stream @detect="onDetect"></qrcode-stream>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" @click="qrCodeReaderDialog = false">Close</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="qrCodeResultDialog" max-width="500">
+            <v-card>
+                <v-card-title>QR Content</v-card-title>
+                <v-card-text>{{ qrCodeContent }}</v-card-text>
+            </v-card>
+            <v-card-actions>
+                <v-btn color="primary" @click="qrCodeResultDialog = false">Close</v-btn>
+            </v-card-actions>
+        </v-dialog>
     </v-app>
 </template>
 
@@ -58,6 +85,7 @@ import { ref, onMounted } from 'vue';
 import SoundLibrarian from '@/components/SoundLibrarian.vue';
 import SoundEditor from '@/components/SoundEditor.vue';
 import { connect, loadJSON, sendMidiCC, sliderChange, createTable, midiIn, midiOut, notesOn, mParameterData } from '../../app.js';
+import { QrcodeStream } from 'vue-qrcode-reader';
 
 const drawer = ref(false);
 const view = ref('editor');
@@ -65,10 +93,19 @@ const aboutDialog = ref(false);
 const midiSettingsDialog = ref(false);
 const selectedMidiIn = ref(midiIn[0]);
 const selectedMidiOut = ref(midiOut[0]);
+const qrCodeReaderDialog = ref(false);
+const qrCodeResultDialog = ref(false);
+const qrCodeContent = ref('');
 
 const parameterList = ref();
 
 onMounted(() => {
     parameterList.value = mParameterData;
 });
+
+const onDetect = (content) => {
+    qrCodeContent.value = content;
+    qrCodeResultDialog.value = true;
+    qrCodeReaderDialog.value = false;
+};
 </script>
