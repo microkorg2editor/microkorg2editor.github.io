@@ -1,0 +1,74 @@
+<template>
+    <v-app>
+        <v-app-bar>
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-toolbar-title>microKORG2 Sound Editor/Librarian</v-toolbar-title>
+
+            <v-btn @click="midiSettingsDialog = true">
+                <v-icon>mdi-midi-port</v-icon>
+                MIDI Settings
+            </v-btn>
+
+            <v-btn-toggle v-model="view" class="mr-2">
+                <v-btn value="editor">
+                    <v-icon>mdi-pencil</v-icon>
+                    Editor
+                </v-btn>
+                <v-btn value="librarian">
+                    <v-icon>mdi-library</v-icon>
+                    Librarian
+                </v-btn>
+            </v-btn-toggle>
+        </v-app-bar>
+
+        <v-main>
+            <SoundLibrarian v-if="view === 'librarian'" />
+            <SoundEditor v-else-if="view === 'editor'" :paramList="parameterList" />
+        </v-main>
+
+        <v-navigation-drawer v-model="drawer" absolute temporary>
+            <v-list>
+                <v-list-item @click="aboutDialog = true">About</v-list-item>
+            </v-list>
+        </v-navigation-drawer>
+
+        <v-dialog v-model="aboutDialog" max-width="500">
+            <v-card>
+                <v-card-title>About</v-card-title>
+                <v-card-text>
+                    microKORG2 Sound Editor/Librarian v0.0.1
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="midiSettingsDialog" max-width="500">
+            <v-card>
+                <v-card-title>MIDI Settings</v-card-title>
+                <v-card-text>
+                    <v-select v-model="selectedMidiIn" :items="midiIn" label="MIDI In" class="w-2 ma-2"></v-select>
+                    <v-select v-model="selectedMidiOut" :items="midiOut" label="MIDI Out" class="w-2 ma-2"></v-select>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+    </v-app>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import SoundLibrarian from '@/components/SoundLibrarian.vue';
+import SoundEditor from '@/components/SoundEditor.vue';
+import { connect, loadJSON, sendMidiCC, sliderChange, createTable, midiIn, midiOut, notesOn, mParameterData } from '../../app.js';
+
+const drawer = ref(false);
+const view = ref('editor');
+const aboutDialog = ref(false);
+const midiSettingsDialog = ref(false);
+const selectedMidiIn = ref(midiIn[0]);
+const selectedMidiOut = ref(midiOut[0]);
+
+const parameterList = ref();
+
+onMounted(() => {
+    parameterList.value = mParameterData;
+});
+</script>

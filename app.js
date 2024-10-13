@@ -1,5 +1,7 @@
 'use strict';
 
+export { connect, loadJSON, sendMidiCC, sliderChange, createTable, midiIn, midiOut, notesOn, mParameterData };
+
 let midiIn = [];
 let midiOut = [];
 let notesOn = new Map(); 
@@ -85,6 +87,7 @@ function startListening()
 
 function sendMidiCC(Channel, CCNumber, value) 
 {    
+    console.log(Channel, CCNumber, value);
     const StatusByte = 0xB0 | Channel;
 
     const device = midiOut[selectOut.selectedIndex];
