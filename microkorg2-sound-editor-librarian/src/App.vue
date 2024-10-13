@@ -27,7 +27,7 @@
 
         <v-main>
             <SoundLibrarian v-if="view === 'librarian'" />
-            <SoundEditor v-else-if="view === 'editor'" :paramList="parameterList" />
+            <SoundEditor v-else-if="view === 'editor'" />
         </v-main>
 
         <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -81,7 +81,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import SoundLibrarian from '@/components/SoundLibrarian.vue';
 import SoundEditor from '@/components/SoundEditor.vue';
 import { connect, loadJSON, sendMidiCC, sliderChange, createTable, midiIn, midiOut, notesOn, mParameterData } from '../../app.js';
@@ -96,12 +96,6 @@ const selectedMidiOut = ref(midiOut[0]);
 const qrCodeReaderDialog = ref(false);
 const qrCodeResultDialog = ref(false);
 const qrCodeContent = ref('');
-
-const parameterList = ref();
-
-onMounted(() => {
-    parameterList.value = mParameterData;
-});
 
 const onDetect = (content) => {
     qrCodeContent.value = content;

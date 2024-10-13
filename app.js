@@ -8,8 +8,13 @@ let notesOn = new Map();
 let mParameterData = [];
 let mNrpnData = [];
 
-connect();
-loadJSON("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.json");
+if (typeof MK2_EDITOR_VANILLA === 'undefined') var MK2_EDITOR_VANILLA = false;
+
+if (MK2_EDITOR_VANILLA)
+{
+    connect();
+    loadJSON("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.json");
+}
 
 function connect() 
 {
