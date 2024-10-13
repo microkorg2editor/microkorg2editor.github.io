@@ -110,10 +110,8 @@ function nrpnSliderChange(channel, msb, lsb, value)
     sendMidiCC(channel, 99, msb);
 
     // data entry
-    lsb = value & 0x7F;
-    sendMidiCC(channel, 38, lsb);
-    msb = (value < 0) ? 0x7F : 0x0;
-    sendMidiCC(channel, 6, msb);
+    sendMidiCC(channel, 6, (value < 0) ? 0x7F : 0x0);
+    sendMidiCC(channel, 38, value & 0x7F);
 }
 
 function createTable(data) 

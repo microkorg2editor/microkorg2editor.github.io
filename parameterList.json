@@ -466,8 +466,8 @@
             "name": "Arpeggiator Swing",
             "displayMin": "-100",
             "displayMax": "100",
-            "knobMin": -63,
-            "knobMax": 63,
+            "knobMin": -100,
+            "knobMax": 100,
             "msb": 0,
             "lsb": 5
         },
@@ -539,7 +539,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 0
         },
@@ -548,7 +548,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 1
         },
@@ -557,7 +557,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 2
         },
@@ -566,7 +566,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 3
         },
@@ -575,7 +575,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 4
         },
@@ -584,7 +584,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 5
         },
@@ -593,7 +593,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 16
         },
@@ -602,7 +602,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 17
         },
@@ -611,7 +611,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 18
         },
@@ -620,7 +620,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 19
         },
@@ -629,7 +629,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 20
         },
@@ -638,7 +638,7 @@
             "displayMin": "0",
             "displayMax": "17",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 17,
             "msb": 4,
             "lsb": 21
         },
@@ -648,7 +648,7 @@
             "displayMin": "0",
             "displayMax": "75",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 75,
             "msb": 4,
             "lsb": 32
         },
@@ -657,7 +657,7 @@
             "displayMin": "0",
             "displayMax": "75",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 75,
             "msb": 4,
             "lsb": 33
         },
@@ -666,7 +666,7 @@
             "displayMin": "0",
             "displayMax": "75",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 75,
             "msb": 4,
             "lsb": 34
         },
@@ -675,7 +675,7 @@
             "displayMin": "0",
             "displayMax": "75",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 75,
             "msb": 4,
             "lsb": 35
         },
@@ -684,7 +684,7 @@
             "displayMin": "0",
             "displayMax": "75",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 75,
             "msb": 4,
             "lsb": 36
         },
@@ -693,9 +693,729 @@
             "displayMin": "0",
             "displayMax": "75",
             "knobMin": 0,
-            "knobMax": 127,
+            "knobMax": 75,
             "msb": 4,
             "lsb": 37
+        },
+        {
+            "name": "Vocoder Mic Direct",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 1
+        },
+        {
+            "name": "Vocoder Synth Dry/Wet",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 2
+        },
+        {
+            "name": "Vocoder Formant",
+            "displayMin": "-63",
+            "displayMax": "63",
+            "knobMin": -63,
+            "knobMax": 63,
+            "msb": 5,
+            "lsb": 3
+        },
+        {
+            "name": "Vocoder Resonance",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 4
+        },
+        {
+            "name": "Vocoder E.F.Sens",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 5
+        },
+        {
+            "name": "Vocoder Band 1 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 16
+        },
+        {
+            "name": "Vocoder Band 2 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 17
+        },
+        {
+            "name": "Vocoder Band 3 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 18
+        },
+        {
+            "name": "Vocoder Band 4 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 19
+        },
+        {
+            "name": "Vocoder Band 5 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 20
+        },        
+        {
+            "name": "Vocoder Band 6 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 21
+        },
+        {
+            "name": "Vocoder Band 7 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 22
+        },
+        {
+            "name": "Vocoder Band 8 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 23
+        },
+        {
+            "name": "Vocoder Band 9 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 24
+        },
+        {
+            "name": "Vocoder Band 10 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 25
+        },
+        {
+            "name": "Vocoder Band 11 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 26
+        },
+        {
+            "name": "Vocoder Band 12 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 27
+        },
+        {
+            "name": "Vocoder Band 13 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 28
+        },        
+        {
+            "name": "Vocoder Band 14 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 29
+        },
+        {
+            "name": "Vocoder Band 15 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 30
+        },
+        {
+            "name": "Vocoder Band 16 Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 31
+        },
+        {
+            "name": "Vocoder Band 1 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 32
+        },
+        {
+            "name": "Vocoder Band 2 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 33
+        },
+        {
+            "name": "Vocoder Band 3 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 34
+        },
+        {
+            "name": "Vocoder Band 4 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 35
+        },
+        {
+            "name": "Vocoder Band 5 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 36
+        },        
+        {
+            "name": "Vocoder Band 6 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 37
+        },
+        {
+            "name": "Vocoder Band 7 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 38
+        },
+        {
+            "name": "Vocoder Band 8 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 39
+        },
+        {
+            "name": "Vocoder Band 9 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 40
+        },
+        {
+            "name": "Vocoder Band 10 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 41
+        },
+        {
+            "name": "Vocoder Band 11 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 42
+        },
+        {
+            "name": "Vocoder Band 12 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 43
+        },
+        {
+            "name": "Vocoder Band 13 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 44
+        },        
+        {
+            "name": "Vocoder Band 14 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 45
+        },
+        {
+            "name": "Vocoder Band 15 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 46
+        },
+        {
+            "name": "Vocoder Band 16 Pan",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 47
+        },
+        {
+            "name": "Vocoder Band 1 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 48
+        },
+        {
+            "name": "Vocoder Band 2 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 49
+        },
+        {
+            "name": "Vocoder Band 3 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 50
+        },
+        {
+            "name": "Vocoder Band 4 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 51
+        },
+        {
+            "name": "Vocoder Band 5 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 52
+        },        
+        {
+            "name": "Vocoder Band 6 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 53
+        },
+        {
+            "name": "Vocoder Band 7 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 54
+        },
+        {
+            "name": "Vocoder Band 8 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 55
+        },
+        {
+            "name": "Vocoder Band 9 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 56
+        },
+        {
+            "name": "Vocoder Band 10 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 57
+        },
+        {
+            "name": "Vocoder Band 11 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 58
+        },
+        {
+            "name": "Vocoder Band 12 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 59
+        },
+        {
+            "name": "Vocoder Band 13 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 60
+        },        
+        {
+            "name": "Vocoder Band 14 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 61
+        },
+        {
+            "name": "Vocoder Band 15 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 62
+        },
+        {
+            "name": "Vocoder Band 16 Formant",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 5,
+            "lsb": 63
+        },
+        {
+            "name": "Hardtune Intensity",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 6,
+            "lsb": 1
+        },
+        {
+            "name": "Hardtune Speed",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 6,
+            "lsb": 2
+        },
+        {
+            "name": "Hardtune Formant",
+            "displayMin": "-63",
+            "displayMax": "63",
+            "knobMin": -63,
+            "knobMax": 63,
+            "msb": 6,
+            "lsb": 3
+        },
+        {
+            "name": "Harmonies Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 7,
+            "lsb": 1
+        },
+        {
+            "name": "Harmonizer Stereo Spread",
+            "displayMin": "-63",
+            "displayMax": "63",
+            "knobMin": -63,
+            "knobMax": 63,
+            "msb": 7,
+            "lsb": 2
+        },
+        {
+            "name": "Harmonizer Formant",
+            "displayMin": "-63",
+            "displayMax": "63",
+            "knobMin": -63,
+            "knobMax": 63,
+            "msb": 7,
+            "lsb": 3
+        },
+        {
+            "name": "Harmonizer Pitch Detune",
+            "displayMin": "-63",
+            "displayMax": "63",
+            "knobMin": -63,
+            "knobMax": 63,
+            "msb": 7,
+            "lsb": 4
+        },
+        {
+            "name": "Harmonizer Delay",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 7,
+            "lsb": 5
+        },
+        {
+            "name": "Harmony Number",
+            "displayMin": "0",
+            "displayMax": "1",
+            "knobMin": 0,
+            "knobMax": 1,
+            "msb": 7,
+            "lsb": 16
+        },
+        {
+            "name": "Harmony 1 Pitch (Type 1)",
+            "displayMin": "0",
+            "displayMax": "28",
+            "knobMin": 0,
+            "knobMax": 28,
+            "msb": 7,
+            "lsb": 32
+        },
+        {
+            "name": "Harmony 1 Pitch (Type 2)",
+            "displayMin": "0",
+            "displayMax": "20",
+            "knobMin": 0,
+            "knobMax": 20,
+            "msb": 7,
+            "lsb": 33
+        },
+        {
+            "name": "Harmony 1 Pitch (Type 3)",
+            "displayMin": "0",
+            "displayMax": "24",
+            "knobMin": 0,
+            "knobMax": 24,
+            "msb": 7,
+            "lsb": 34
+        },
+        {
+            "name": "Harmony 1 Pitch (Type 4)",
+            "displayMin": "0",
+            "displayMax": "28",
+            "knobMin": 0,
+            "knobMax": 28,
+            "msb": 7,
+            "lsb": 35
+        },
+        {
+            "name": "Harmony 1 Pitch (Type 5)",
+            "displayMin": "0",
+            "displayMax": "12",
+            "knobMin": 0,
+            "knobMax": 12,
+            "msb": 7,
+            "lsb": 36
+        },
+        {
+            "name": "Harmony 1 Pitch (Type 6)",
+            "displayMin": "0",
+            "displayMax": "12",
+            "knobMin": 0,
+            "knobMax": 12,
+            "msb": 7,
+            "lsb": 37
+        },
+        {
+            "name": "Harmony 1 Pitch (Type 7)",
+            "displayMin": "0",
+            "displayMax": "48",
+            "knobMin": 0,
+            "knobMax": 48,
+            "msb": 7,
+            "lsb": 38   
+        },
+        {
+            "name": "Harmony 2 Pitch (Type 1)",
+            "displayMin": "0",
+            "displayMax": "28",
+            "knobMin": 0,
+            "knobMax": 28,
+            "msb": 7,
+            "lsb":48
+        },
+        {
+            "name": "Harmony 2 Pitch (Type 2)",
+            "displayMin": "0",
+            "displayMax": "20",
+            "knobMin": 0,
+            "knobMax": 20,
+            "msb": 7,
+            "lsb": 49
+        },
+        {
+            "name": "Harmony 2 Pitch (Type 3)",
+            "displayMin": "0",
+            "displayMax": "24",
+            "knobMin": 0,
+            "knobMax": 24,
+            "msb": 7,
+            "lsb": 50
+        },
+        {
+            "name": "Harmony 2 Pitch (Type 4)",
+            "displayMin": "0",
+            "displayMax": "28",
+            "knobMin": 0,
+            "knobMax": 28,
+            "msb": 7,
+            "lsb": 51
+        },
+        {
+            "name": "Harmony 2 Pitch (Type 5)",
+            "displayMin": "0",
+            "displayMax": "12",
+            "knobMin": 0,
+            "knobMax": 12,
+            "msb": 7,
+            "lsb": 52
+        },
+        {
+            "name": "Harmony 2 Pitch (Type 6)",
+            "displayMin": "0",
+            "displayMax": "12",
+            "knobMin": 0,
+            "knobMax": 12,
+            "msb": 7,
+            "lsb": 53
+        },
+        {
+            "name": "Harmony 2 Pitch (Type 7)",
+            "displayMin": "0",
+            "displayMax": "48",
+            "knobMin": 0,
+            "knobMax": 48,
+            "msb": 7,
+            "lsb": 54   
+        },
+        {
+            "name": "LoopRec Stutter",
+            "displayMin": "0",
+            "displayMax": "2",
+            "knobMin": 0,
+            "knobMax": 2,
+            "msb": 8,
+            "lsb": 16   
+        },
+        {
+            "name": "LoopRec Stutter Length",
+            "displayMin": "0",
+            "displayMax": "10",
+            "knobMin": 0,
+            "knobMax": 10,
+            "msb": 8,
+            "lsb": 17   
+        },
+        {
+            "name": "LoopRec Stutter Offset",
+            "displayMin": "-63",
+            "displayMax": "63",
+            "knobMin": -63,
+            "knobMax": 63,
+            "msb": 8,
+            "lsb": 18   
+        },
+        {
+            "name": "Loop Play Level",
+            "displayMin": "0",
+            "displayMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
+            "msb": 8,
+            "lsb": 19   
         }
     ]
 }
