@@ -92,7 +92,10 @@ function sendMidiCC(Channel, CCNumber, value)
     const msgOn = [StatusByte, CCNumber, value];
     
     // First send the note on;
-    device.send(msgOn); 
+    if(device)
+    {
+        device.send(msgOn); 
+    }
 }
 
 function sliderChange(channel, CC, value) 
@@ -109,7 +112,7 @@ function nrpnSliderChange(channel, msb, lsb, value)
     // data entry
     lsb = value & 0x7F;
     sendMidiCC(channel, 38, lsb);
-    msb = (value >> 7) & 0x7F;
+    msb = (value < 0) ? 0x7F : 0x0;
     sendMidiCC(channel, 6, msb);
 }
 
