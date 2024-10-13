@@ -6,6 +6,7 @@ let midiIn = [];
 let midiOut = [];
 let notesOn = new Map(); 
 let mParameterData = [];
+let mNrpnData = [];
 
 connect();
 loadJSON("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.json");
@@ -102,6 +103,19 @@ function sliderChange(channel, CC, value)
     sendMidiCC(channel, CC, value);
 }
 
+function nrpnSliderChange(channel, msb, lsb, value)
+{
+    // set NRPN
+    sendMidiCC(channel, 98, lsb);
+    sendMidiCC(channel, 99, msb);
+
+    // data entry
+    lsb = value & 0x7F;
+    sendMidiCC(channel, 38, lsb);
+    msb = (value >> 7) & 0x7F;
+    sendMidiCC(channel, 6, msb);
+}
+
 function createTable(data) 
 {
     const body = document.body, 
@@ -110,7 +124,8 @@ function createTable(data)
   
     if(data)
     {
-        var parameters = JSON.parse(data).programParameters;
+        var parameterData = JSON.parse(data);
+        var parameters = parameterData.CCParameters;
         for (let i = 0; i < parameters.length; i++) 
         {
           const row = tbl.insertRow();
@@ -129,6 +144,28 @@ function createTable(data)
             sliderChange(0x0, mParameterData[this.id].CC, this.value);
           }
           cell.appendChild(slider);
+        }
+
+        // NRPN params need special handling
+        var nrpnParameters = parameterData.NrpnParmeters;
+        for (let i = 0; i < nrpnParameters.length; i++) 
+        {
+            const row = tbl.insertRow();
+            const cell = row.insertCell();
+            cell.innerHTML = nrpnParameters[i].name;
+            mNrpnData.push(nrpnParameters[i]);
+
+            var slider = document.createElement("input");
+            slider.type = 'range';
+            slider.min = 0;
+            slider.max = 127;
+            slider.id = i;
+            slider.oninput = function() 
+            {
+                // TODO : channel support
+                nrpnSliderChange(0x0, mNrpnData[this.id].msb, mNrpnData[this.id].lsb, this.value);
+            }
+            cell.appendChild(slider);
         }
         body.appendChild(tbl);
     }
