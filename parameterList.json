@@ -466,8 +466,8 @@
             "name": "Arpeggiator Swing",
             "displayMin": "-100",
             "displayMax": "100",
-            "knobMin": "-63",
-            "knobMax": "63",
+            "knobMin": -63,
+            "knobMax": 63,
             "msb": 0,
             "lsb": 5
         },
@@ -674,8 +674,8 @@
             "name": "Patch 4 Destination",
             "displayMin": "0",
             "displayMax": "75",
-            "knobMin": "0",
-            "knobMax": "127",
+            "knobMin": 0,
+            "knobMax": 127,
             "msb": 4,
             "lsb": 35
         },
