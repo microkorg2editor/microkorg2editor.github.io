@@ -114,6 +114,15 @@ function nrpnSliderChange(channel, msb, lsb, value)
     sendMidiCC(channel, 38, value & 0x7F);
 }
 
+function programChangeSliderChange(channel, value)
+{
+    var msb = value / 64;
+    var lsb = value % 64;
+
+    sendMidiCC(channel, 0, lsb);
+    sendMidiCC(channel, 32, msb);
+}
+
 function createTable(data) 
 {
     const body = document.body, 
@@ -162,6 +171,25 @@ function createTable(data)
             {
                 // TODO : channel support
                 nrpnSliderChange(0x0, mNrpnData[this.id].msb, mNrpnData[this.id].lsb, this.value);
+            }
+            cell.appendChild(slider);
+        }
+
+        var programChange = parameterData.programChange;
+        {
+            const row = tbl.insertRow();
+            const cell = row.insertCell();
+            cell.innerHTML = programChange[0].name;
+
+            var slider = document.createElement("input");
+            slider.type = 'range';
+            slider.min = programChange[0].knobMin;
+            slider.max = programChange[0].knobMax;
+            slider.id = i;
+            slider.oninput = function() 
+            {
+                // TODO : channel support
+                programChangeSliderChange(0x0, mNrpnData[this.id].msb, mNrpnData[this.id].lsb, this.value);
             }
             cell.appendChild(slider);
         }
