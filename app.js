@@ -89,12 +89,10 @@ function sendMidiCC(Channel, CCNumber, value)
     const StatusByte = 0xB0 | Channel;
 
     const device = midiOut[selectOut.selectedIndex];
-    const msgOn = [StatusByte, CCNumber, value];
-    
-    // First send the note on;
+    const msg = [StatusByte, CCNumber, value];
     if(device)
     {
-        device.send(msgOn); 
+        device.send(msg); 
     }
 }
 
@@ -116,11 +114,17 @@ function nrpnSliderChange(channel, msb, lsb, value)
 
 function programChangeSliderChange(channel, value)
 {
-    var msb = value / 64;
-    var lsb = value % 64;
+    var bank = Math.floor(value / 64);
+    var prog = value % 64;
 
-    sendMidiCC(channel, 0, lsb);
-    sendMidiCC(channel, 32, msb);
+    sendMidiCC(channel, 32, bank);
+
+    const device = midiOut[selectOut.selectedIndex];
+    const msg = [(0xC0 | channel), prog];
+    if(device)
+    {
+        device.send(msg); 
+    }
 }
 
 function createTable(data) 
@@ -175,7 +179,7 @@ function createTable(data)
             cell.appendChild(slider);
         }
 
-        var programChange = parameterData.programChange;
+        var programChange = parameterData.ProgramChange;
         {
             const row = tbl.insertRow();
             const cell = row.insertCell();
@@ -185,11 +189,11 @@ function createTable(data)
             slider.type = 'range';
             slider.min = programChange[0].knobMin;
             slider.max = programChange[0].knobMax;
-            slider.id = i;
+            slider.id = 0;
             slider.oninput = function() 
             {
                 // TODO : channel support
-                programChangeSliderChange(0x0, mNrpnData[this.id].msb, mNrpnData[this.id].lsb, this.value);
+                programChangeSliderChange(0x0, this.value);
             }
             cell.appendChild(slider);
         }
