@@ -11,7 +11,14 @@
     <b>Inputs:</b> <select id="selectIn"></select><br>
     <b>Outputs:</b> <select id="selectOut"></select>
 
+    <!--　<label>Select file to upload</label>　-->
+    <!--　<input type="file">　-->
+
     <h2>Parameters</h2>
+    <input type="text" id="parameterSearchInput" onkeyup="searchParameterTable()" placeholder="Search for parameters">
+
+    <table id="parameterTable">
+    </table> 
     <script src="app.js" defer></script>
     <script src='https://cwilso.github.io/WebMIDIAPIShim/build/WebMIDIAPI.min.js'></script>
     <noscript>You need to enable JavaScript to view the full site.</noscript>
