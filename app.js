@@ -177,13 +177,25 @@ function createTable(data)
             var table = document.getElementById('parameterTable');
             var element = table.getElementsByTagName("tr");
             var td = element[this.id].getElementsByTagName("td");
-            td[2].innerHTML = this.value;
+            td[2].firstChild.value = this.value;
           }
           const sliderCell = row.insertCell();
           sliderCell.appendChild(slider);
 
+          var textbox = document.createElement("input");
+          textbox.type = 'text';
+          textbox.id = i;
+          textbox.value = slider.value;
+          textbox.oninput = function() 
+          {
+              programChangeSliderChange(0x0, this.value);
+              var table = document.getElementById('parameterTable');
+              var element = table.getElementsByTagName("tr");
+              var td = element[this.id].getElementsByTagName("td");
+              td[1].firstChild.value = this.value;
+          }
           const valueLabelCell = row.insertCell();
-          valueLabelCell.innerHTML = slider.value;
+          valueLabelCell.appendChild(textbox);
         }
 
         // NRPN params need special handling
@@ -204,8 +216,28 @@ function createTable(data)
             {
                 // TODO : channel support
                 nrpnSliderChange(0x0, mNrpnData[this.id].msb, mNrpnData[this.id].lsb, this.value);
+                var table = document.getElementById('parameterTable');
+                var element = table.getElementsByTagName("tr");
+                var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
+                td[2].firstChild.value = this.value;
             }
-            cell.appendChild(slider);
+            const sliderCell = row.insertCell();
+            sliderCell.appendChild(slider);
+  
+            var textbox = document.createElement("input");
+            textbox.type = 'text';
+            textbox.id = i;
+            textbox.value = slider.value;
+            textbox.oninput = function() 
+            {
+                programChangeSliderChange(0x0, this.value);
+                var table = document.getElementById('parameterTable');
+                var element = table.getElementsByTagName("tr");
+                var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
+                td[1].firstChild.value = this.value;
+            }
+            const valueLabelCell = row.insertCell();
+            valueLabelCell.appendChild(textbox);
         }
 
         var programChange = parameterData.ProgramChange;
@@ -223,8 +255,28 @@ function createTable(data)
             {
                 // TODO : channel support
                 programChangeSliderChange(0x0, this.value);
+                var table = document.getElementById('parameterTable');
+                var element = table.getElementsByTagName("tr");
+                var td = element[mParameterData.length + nrpnParameters.length + Number(this.id)].getElementsByTagName("td");
+                td[2].firstChild.value = this.value;
             }
-            cell.appendChild(slider);
+            const sliderCell = row.insertCell();
+            sliderCell.appendChild(slider);
+  
+            var textbox = document.createElement("input");
+            textbox.type = 'text';
+            textbox.id = 0;
+            textbox.value = slider.value;
+            textbox.oninput = function() 
+            {
+                programChangeSliderChange(0x0, this.value);
+                var table = document.getElementById('parameterTable');
+                var element = table.getElementsByTagName("tr");
+                var td = element[mParameterData.length + nrpnParameters.length + Number(this.id)].getElementsByTagName("td");
+                td[1].firstChild.value = this.value;
+            }
+            const valueLabelCell = row.insertCell();
+            valueLabelCell.appendChild(textbox);
         }
         body.appendChild(tbl);
     }
