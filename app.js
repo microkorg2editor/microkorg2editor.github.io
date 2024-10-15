@@ -148,6 +148,32 @@ function programChangeSliderChange(channel, value)
     }
 }
 
+function addSlider(id, min, max, row)
+{
+    var slider = document.createElement("input");
+    slider.type = 'range';
+    slider.min = min;
+    slider.max = max;
+    slider.id = id;
+
+    const sliderCell = row.insertCell();
+    sliderCell.appendChild(slider);
+
+    return slider;
+}
+
+function addTextBox(id, min, max, row, initValue)
+{
+    var textbox = document.createElement("input");
+    textbox.type = 'text';
+    textbox.id = id;
+    textbox.value = initValue;
+    const valueLabelCell = row.insertCell();
+    valueLabelCell.appendChild(textbox);
+
+    return textbox;
+}
+
 function createTable(data) 
 {
     const body = document.body, 
@@ -165,11 +191,7 @@ function createTable(data)
           cell.innerHTML = parameters[i].name;
           mParameterData.push(parameters[i]);
 
-          var slider = document.createElement("input");
-          slider.type = 'range';
-          slider.min = 0;
-          slider.max = 127;
-          slider.id = i;
+          var slider = addSlider(i, 0, 127, row);
           slider.oninput = function() 
           {
             // TODO : channel support
@@ -179,14 +201,9 @@ function createTable(data)
             var td = element[this.id].getElementsByTagName("td");
             td[2].firstChild.value = this.value;
           }
-          const sliderCell = row.insertCell();
-          sliderCell.appendChild(slider);
-
-          var textbox = document.createElement("input");
-          textbox.type = 'text';
-          textbox.id = i;
-          textbox.value = slider.value;
-          textbox.oninput = function() 
+          
+          var textBox = addTextBox(i, 0, 127, row, slider.value);
+          textBox.oninput = function() 
           {
               programChangeSliderChange(0x0, this.value);
               var table = document.getElementById('parameterTable');
@@ -194,8 +211,6 @@ function createTable(data)
               var td = element[this.id].getElementsByTagName("td");
               td[1].firstChild.value = this.value;
           }
-          const valueLabelCell = row.insertCell();
-          valueLabelCell.appendChild(textbox);
         }
 
         // NRPN params need special handling
@@ -207,11 +222,7 @@ function createTable(data)
             cell.innerHTML = nrpnParameters[i].name;
             mNrpnData.push(nrpnParameters[i]);
 
-            var slider = document.createElement("input");
-            slider.type = 'range';
-            slider.min = nrpnParameters[i].knobMin;
-            slider.max = nrpnParameters[i].knobMax;
-            slider.id = i;
+            var slider = addSlider(i, nrpnParameters[i].knobMin, nrpnParameters[i].knobMax, row);
             slider.oninput = function() 
             {
                 // TODO : channel support
@@ -221,14 +232,9 @@ function createTable(data)
                 var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
                 td[2].firstChild.value = this.value;
             }
-            const sliderCell = row.insertCell();
-            sliderCell.appendChild(slider);
-  
-            var textbox = document.createElement("input");
-            textbox.type = 'text';
-            textbox.id = i;
-            textbox.value = slider.value;
-            textbox.oninput = function() 
+            
+            var textBox = addTextBox(i, nrpnParameters[i].knobMin, nrpnParameters[i].knobMax, row, slider.value);
+            textBox.oninput = function() 
             {
                 programChangeSliderChange(0x0, this.value);
                 var table = document.getElementById('parameterTable');
@@ -236,8 +242,6 @@ function createTable(data)
                 var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
                 td[1].firstChild.value = this.value;
             }
-            const valueLabelCell = row.insertCell();
-            valueLabelCell.appendChild(textbox);
         }
 
         var programChange = parameterData.ProgramChange;
@@ -246,11 +250,7 @@ function createTable(data)
             const cell = row.insertCell();
             cell.innerHTML = programChange[0].name;
 
-            var slider = document.createElement("input");
-            slider.type = 'range';
-            slider.min = programChange[0].knobMin;
-            slider.max = programChange[0].knobMax;
-            slider.id = 0;
+            var slider = addSlider(0, programChange[0].knobMin, programChange[0].knobMax, row);
             slider.oninput = function() 
             {
                 // TODO : channel support
@@ -260,14 +260,9 @@ function createTable(data)
                 var td = element[mParameterData.length + nrpnParameters.length + Number(this.id)].getElementsByTagName("td");
                 td[2].firstChild.value = this.value;
             }
-            const sliderCell = row.insertCell();
-            sliderCell.appendChild(slider);
-  
-            var textbox = document.createElement("input");
-            textbox.type = 'text';
-            textbox.id = 0;
-            textbox.value = slider.value;
-            textbox.oninput = function() 
+
+            var textBox = addTextBox(0, programChange[0].knobMin, programChange[0].knobMax, row, slider.value);
+            textBox.oninput = function() 
             {
                 programChangeSliderChange(0x0, this.value);
                 var table = document.getElementById('parameterTable');
@@ -275,8 +270,6 @@ function createTable(data)
                 var td = element[mParameterData.length + nrpnParameters.length + Number(this.id)].getElementsByTagName("td");
                 td[1].firstChild.value = this.value;
             }
-            const valueLabelCell = row.insertCell();
-            valueLabelCell.appendChild(textbox);
         }
         body.appendChild(tbl);
     }
