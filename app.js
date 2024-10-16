@@ -5,6 +5,10 @@ let midiOut = [];
 let notesOn = new Map(); 
 let mParameterData = [];
 let mNrpnData = [];
+let mTimbre1Channel = 0;
+let mTimbre2Channel = 1;
+let mNumCCTimbreParams;
+let mNumNrpnTimbreParams;
 
 connect();
 loadJSON("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.json");
@@ -86,7 +90,7 @@ function startListening()
 
 function sendMidiCC(Channel, CCNumber, value) 
 {    
-    const StatusByte = 0xB0 | Channel;
+    const StatusByte = 0xB0 | Number(Channel);
 
     const device = midiOut[selectOut.selectedIndex];
     const msg = [StatusByte, CCNumber, value];
@@ -174,6 +178,73 @@ function addTextBox(id, min, max, row, initValue)
     return textbox;
 }
 
+function addParametersToTable(tbl, parameterData, timbrePrefix)
+{
+    var parameters = parameterData.CCParameters;
+    for (let i = 0; i < parameters.length; i++) 
+    {
+      const row = tbl.insertRow();
+      const cell = row.insertCell();
+      cell.innerHTML = timbrePrefix + parameters[i].name;
+      mParameterData.push(parameters[i]);
+
+      var slider = addSlider(mNumCCTimbreParams + i, 0, 127, row);
+      slider.oninput = function() 
+      {
+        // TODO : channel support
+        var timbre = this.id > mNumCCTimbreParams ? mTimbre2Channel : mTimbre1Channel;
+        sliderChange(timbre, mParameterData[this.id].CC, this.value);
+        var table = document.getElementById('parameterTable');
+        var element = table.getElementsByTagName("tr");
+        var td = element[this.id].getElementsByTagName("td");
+        td[2].firstChild.value = this.value;
+      }
+      
+      var textBox = addTextBox(mNumCCTimbreParams + i, 0, 127, row, slider.value);
+      textBox.oninput = function() 
+      {
+          var timbre = this.id > mNumCCTimbreParams ? mTimbre2Channel : mTimbre1Channel;
+          programChangeSliderChange(timbre, this.value);
+          var table = document.getElementById('parameterTable');
+          var element = table.getElementsByTagName("tr");
+          var td = element[this.id].getElementsByTagName("td");
+          td[1].firstChild.value = this.value;
+      }
+    }
+
+    // NRPN params need special handling
+    var nrpnParameters = parameterData.NrpnParmeters;
+    for (let i = 0; i < nrpnParameters.length; i++) 
+    {
+        const row = tbl.insertRow();
+        const cell = row.insertCell();
+        cell.innerHTML = timbrePrefix + nrpnParameters[i].name;
+        mNrpnData.push(nrpnParameters[i]);
+
+        var slider = addSlider(mNumNrpnTimbreParams + i, nrpnParameters[i].knobMin, nrpnParameters[i].knobMax, row);
+        slider.oninput = function() 
+        {
+            var timbre = this.id > mNumNrpnTimbreParams ? mTimbre2Channel : mTimbre1Channel;
+            nrpnSliderChange(timbre, mNrpnData[this.id].msb, mNrpnData[this.id].lsb, this.value);
+            var table = document.getElementById('parameterTable');
+            var element = table.getElementsByTagName("tr");
+            var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
+            td[2].firstChild.value = this.value;
+        }
+        
+        var textBox = addTextBox(mNumNrpnTimbreParams + i, nrpnParameters[i].knobMin, nrpnParameters[i].knobMax, row, slider.value);
+        textBox.oninput = function() 
+        {
+            var timbre = this.id > mNumNrpnTimbreParams ? mTimbre2Channel : mTimbre1Channel;
+            programChangeSliderChange(timbre, this.value);
+            var table = document.getElementById('parameterTable');
+            var element = table.getElementsByTagName("tr");
+            var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
+            td[1].firstChild.value = this.value;
+        }
+    }
+}
+
 function createTable(data) 
 {
     const body = document.body, 
@@ -183,84 +254,33 @@ function createTable(data)
     if(data)
     {
         var parameterData = JSON.parse(data);
-        var parameters = parameterData.CCParameters;
-        for (let i = 0; i < parameters.length; i++) 
-        {
-          const row = tbl.insertRow();
-          const cell = row.insertCell();
-          cell.innerHTML = parameters[i].name;
-          mParameterData.push(parameters[i]);
 
-          var slider = addSlider(i, 0, 127, row);
-          slider.oninput = function() 
-          {
-            // TODO : channel support
-            sliderChange(0x0, mParameterData[this.id].CC, this.value);
-            var table = document.getElementById('parameterTable');
-            var element = table.getElementsByTagName("tr");
-            var td = element[this.id].getElementsByTagName("td");
-            td[2].firstChild.value = this.value;
-          }
-          
-          var textBox = addTextBox(i, 0, 127, row, slider.value);
-          textBox.oninput = function() 
-          {
-              programChangeSliderChange(0x0, this.value);
-              var table = document.getElementById('parameterTable');
-              var element = table.getElementsByTagName("tr");
-              var td = element[this.id].getElementsByTagName("td");
-              td[1].firstChild.value = this.value;
-          }
-        }
+        // initialize
+        mNumCCTimbreParams = 0;
+        mNumNrpnTimbreParams = 0;
+        addParametersToTable(tbl, parameterData, "Timbre 1 ");
 
-        // NRPN params need special handling
-        var nrpnParameters = parameterData.NrpnParmeters;
-        for (let i = 0; i < nrpnParameters.length; i++) 
-        {
-            const row = tbl.insertRow();
-            const cell = row.insertCell();
-            cell.innerHTML = nrpnParameters[i].name;
-            mNrpnData.push(nrpnParameters[i]);
-
-            var slider = addSlider(i, nrpnParameters[i].knobMin, nrpnParameters[i].knobMax, row);
-            slider.oninput = function() 
-            {
-                // TODO : channel support
-                nrpnSliderChange(0x0, mNrpnData[this.id].msb, mNrpnData[this.id].lsb, this.value);
-                var table = document.getElementById('parameterTable');
-                var element = table.getElementsByTagName("tr");
-                var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
-                td[2].firstChild.value = this.value;
-            }
-            
-            var textBox = addTextBox(i, nrpnParameters[i].knobMin, nrpnParameters[i].knobMax, row, slider.value);
-            textBox.oninput = function() 
-            {
-                programChangeSliderChange(0x0, this.value);
-                var table = document.getElementById('parameterTable');
-                var element = table.getElementsByTagName("tr");
-                var td = element[mParameterData.length + Number(this.id)].getElementsByTagName("td");
-                td[1].firstChild.value = this.value;
-            }
-        }
+        // set 
+        mNumCCTimbreParams = mParameterData.length;
+        mNumNrpnTimbreParams = mNrpnData.length;
+        addParametersToTable(tbl, parameterData, "Timbre 2 ");
 
         var programChange = parameterData.ProgramChange;
         {
             const row = tbl.insertRow();
             const cell = row.insertCell();
             cell.innerHTML = programChange[0].name;
-
+    
             var slider = addSlider(0, programChange[0].knobMin, programChange[0].knobMax, row);
             slider.oninput = function() 
             {
-                // TODO : channel support
                 programChangeSliderChange(0x0, this.value);
                 var table = document.getElementById('parameterTable');
                 var element = table.getElementsByTagName("tr");
                 var td = element[mParameterData.length + nrpnParameters.length + Number(this.id)].getElementsByTagName("td");
                 td[2].firstChild.value = this.value;
             }
-
+    
             var textBox = addTextBox(0, programChange[0].knobMin, programChange[0].knobMax, row, slider.value);
             textBox.oninput = function() 
             {
@@ -271,6 +291,7 @@ function createTable(data)
                 td[1].firstChild.value = this.value;
             }
         }
+
         body.appendChild(tbl);
     }
 }
@@ -316,6 +337,16 @@ function loadJSON(file)
         }
     }
     rawFile.send(null);
+}
+
+function setTimbre1Channel()
+{
+    mTimbre1Channel = T1Channel.value - 1;
+}
+
+function setTimbre2Channel()
+{
+    mTimbre2Channel = T2Channel.value - 1;
 }
 
 // // Select your input type file and store it in a variable
