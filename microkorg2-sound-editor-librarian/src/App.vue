@@ -3,6 +3,11 @@
         <v-app-bar>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>microKORG2 Sound Editor/Librarian</v-toolbar-title>
+
+            <v-btn @click="parameterStore.requestCurrentProgram">
+                <v-icon>mdi-refresh</v-icon>
+                Refresh
+            </v-btn>
             <v-btn @click="midiSettingsDialog = true">
                 <v-icon>mdi-midi-port</v-icon>
                 MIDI Settings
@@ -45,6 +50,7 @@
             </v-card>
         </v-dialog>
 
+        <!--
         <v-dialog v-model="midiSettingsDialog" max-width="500">
             <v-card>
                 <v-card-title>MIDI Settings</v-card-title>
@@ -54,6 +60,7 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
+        -->
 
         <v-dialog v-model="qrCodeReaderDialog" max-width="500">
             <v-card>
@@ -81,18 +88,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import SoundLibrarian from '@/components/SoundLibrarian.vue';
 import SoundEditor from '@/components/SoundEditor.vue';
-import { connect, loadJSON, sendMidiCC, sliderChange, createTable, midiIn, midiOut, notesOn, mParameterData } from '../../app.js';
 import { QrcodeStream } from 'vue-qrcode-reader';
+import { useParameterStore } from '@/stores/parameters';
 
 const drawer = ref(false);
 const view = ref('editor');
 const aboutDialog = ref(false);
-const midiSettingsDialog = ref(false);
-const selectedMidiIn = ref(midiIn[0]);
-const selectedMidiOut = ref(midiOut[0]);
 const qrCodeReaderDialog = ref(false);
 const qrCodeResultDialog = ref(false);
 const qrCodeContent = ref('');
@@ -102,4 +106,10 @@ const onDetect = (content) => {
     qrCodeResultDialog.value = true;
     qrCodeReaderDialog.value = false;
 };
+
+const parameterStore = useParameterStore();
+
+onMounted(() => {
+    parameterStore.initialize();
+});
 </script>
