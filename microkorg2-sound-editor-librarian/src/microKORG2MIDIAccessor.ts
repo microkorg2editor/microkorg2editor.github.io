@@ -92,7 +92,6 @@ export class microKORG2MidiAccessor {
             // Timing Clock
         } else if (this.isProgramDataDump(message.data)) {
             // remove sysex header and set values to store
-            console.log("Program Data Dump", message.data);
             this.parameterStore.setValueFromDump(
                 message.data.subarray(7, message.data.length - 7)
             );
@@ -113,15 +112,17 @@ export class microKORG2MidiAccessor {
         return (data.length == 3 && (((data[0] & 0xf0) == 0x80) || (data[0] & 0xf0) == 0x90));
     }
 
-    sendControlChange(cc: number, value: number) {
+    sendControlChange(cc: number, value: number, channel: number = 0) {
         if (this.midiOut_ == null) throw ("microKORG2 isn't detected.");
-        this.midiOut_.send([0xB0, cc, value]);
+        const ch = (channel) & 0x0F;
+        this.midiOut_.send([0xB0 | ch, cc, value]);
     }
 
-    sendNRPN(msb: number, lsb: number, value: number) {
+    sendNRPN(msb: number, lsb: number, value: number, channel: number = 1) {
         if (this.midiOut_ == null) throw ("microKORG2 isn't detected.");
-        this.midiOut_.send([0xB0, 99, msb]);
-        this.midiOut_.send([0xB0, 98, lsb]);
-        this.midiOut_.send([0xB0, 6, value]);
+        const ch = (channel) & 0x0F;
+        this.midiOut_.send([0xB0 | ch, 99, msb]);
+        this.midiOut_.send([0xB0 | ch, 98, lsb]);
+        this.midiOut_.send([0xB0 | ch, 6, value]);
     }
 }

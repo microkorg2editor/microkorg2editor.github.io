@@ -957,15 +957,19 @@ export const useParameterStore = defineStore("parameters", {
     },
 
     setValue(name: string, normalizedValue: number) {
+      const timbreMatch = name.match(/^Timbre (\d+)/);
+      const channel = timbreMatch ? parseInt(timbreMatch[1]) - 1 : 0;
+
       if (this.parameters[name]?.cc) {
-        const value = Math.trunc(normalizedValue * (this.parameters[name]?.cc?.max - this.parameters[name]?.cc?.min) + this.parameters[name]?.cc?.min);
-        console.log("Sending CC", name, this.parameters[name]?.cc?.number, value);
-        this.midiAccessor?.sendControlChange(this.parameters[name]?.cc?.number, value);
+        const cc = this.parameters[name]?.cc;
+        const value = Math.round(normalizedValue * (cc.max - cc.min) + cc.min);
+        this.midiAccessor?.sendControlChange(cc.number, value, channel);
       }
+
       if (this.parameters[name]?.nrpn) {
-        console.log("Sending NRPN", this.parameters[name]?.nrpn?.msb, this.parameters[name]?.nrpn?.lsb, normalizedValue);
-        const value = Math.trunc(normalizedValue * (this.parameters[name]?.nrpn?.max - this.parameters[name]?.nrpn?.min) + this.parameters[name]?.nrpn?.min);
-        this.midiAccessor?.sendNRPN(this.parameters[name]?.nrpn?.msb, this.parameters[name]?.nrpn?.lsb, normalizedValue);
+        const nrpn = this.parameters[name]?.nrpn;
+        const value = Math.round(normalizedValue * (nrpn.max - nrpn.min) + nrpn.min);
+        this.midiAccessor?.sendNRPN(nrpn.msb, nrpn.lsb, value, channel);
       }
     }
   },
