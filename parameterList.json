@@ -1417,5 +1417,14 @@
             "msb": 8,
             "lsb": 19   
         }
+    ],
+
+    "ProgramChange" :
+    [
+        {
+            "name": "Program Change",
+            "knobMin": 0,
+            "knobMax": 256
+        }
     ]
 }
