@@ -5,6 +5,7 @@
                 <tr>
                     <th>Parameter</th>
                     <th>Value</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
@@ -12,6 +13,7 @@
                     :class="{ 'updated-parameter': parameters[name]?.updated }">
                     <td>{{ name }}</td>
                     <td>{{ parameters[name]?.value }}</td>
+                    <td>{{ parameterStore.getParameterValue(name) }}</td>
                 </tr>
             </tbody>
         </v-table>
