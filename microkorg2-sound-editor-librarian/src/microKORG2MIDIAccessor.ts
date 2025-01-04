@@ -26,7 +26,7 @@ declare namespace WebMidi {
 
 import type { useParameterStore } from '@/stores/parameters'
 
-const VENDOR_ID      = 0x42;
+const VENDOR_ID = 0x42;
 const PRODUCT_ID_MSB = 0x01;
 const PRODUCT_ID_LSB = 0x71;
 
@@ -45,7 +45,7 @@ export class microKORG2MidiAccessor {
 
     initMIDI() {
         this.midiAccess_ = null;
-        navigator.requestMIDIAccess({sysex: true}).then(((midiAccess) => {
+        navigator.requestMIDIAccess({ sysex: true }).then(((midiAccess) => {
             if (midiAccess == null) {
                 console.log("Couldn't get MIDI access")
                 return;
@@ -78,12 +78,12 @@ export class microKORG2MidiAccessor {
     }
 
     sendMIDIMessage(message) {
-        if (this.midiOut_ == null) throw("microKORG2 isn't detected.");
+        if (this.midiOut_ == null) throw ("microKORG2 isn't detected.");
         this.midiOut_.send(message);
     }
 
     sendProgramDataDumpRequest() {
-        if (this.midiOut_ == null) throw("microKORG2 isn't detected.");
+        if (this.midiOut_ == null) throw ("microKORG2 isn't detected.");
         this.midiOut_.send([0xF0, VENDOR_ID, 0x30, 0x00, PRODUCT_ID_MSB, PRODUCT_ID_LSB, 0x10, 0xF7]);
     }
 
@@ -111,5 +111,17 @@ export class microKORG2MidiAccessor {
 
     isNoteEvent(data) {
         return (data.length == 3 && (((data[0] & 0xf0) == 0x80) || (data[0] & 0xf0) == 0x90));
+    }
+
+    sendControlChange(cc: number, value: number) {
+        if (this.midiOut_ == null) throw ("microKORG2 isn't detected.");
+        this.midiOut_.send([0xB0, cc, value]);
+    }
+
+    sendNRPN(msb: number, lsb: number, value: number) {
+        if (this.midiOut_ == null) throw ("microKORG2 isn't detected.");
+        this.midiOut_.send([0xB0, 99, msb]);
+        this.midiOut_.send([0xB0, 98, lsb]);
+        this.midiOut_.send([0xB0, 6, value]);
     }
 }

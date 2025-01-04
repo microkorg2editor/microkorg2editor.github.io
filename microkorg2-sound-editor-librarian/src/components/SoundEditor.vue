@@ -6,6 +6,7 @@
                     <th>Parameter</th>
                     <th>Value</th>
                     <th>Description</th>
+                    <th>Slider</th>
                 </tr>
             </thead>
             <tbody>
@@ -14,6 +15,11 @@
                     <td>{{ name }}</td>
                     <td>{{ parameters[name]?.value }}</td>
                     <td>{{ parameterStore.getParameterValue(name) }}</td>
+                    <td>
+                        <input v-if="parameterStore.canSendCCorNRPN(name)" type="range" min="0" max="1" step="0.01"
+                            :value="0.0" @input="parameterStore.setValue(name, $event.target.value)" />
+                        <span v-else>-</span>
+                    </td>
                 </tr>
             </tbody>
         </v-table>

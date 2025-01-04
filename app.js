@@ -1,6 +1,6 @@
 'use strict';
 
-export { connect, loadJSON, sendMidiCC, sliderChange, createTable, midiIn, midiOut, notesOn, mParameterData };
+//export { connect, loadJSON, sendMidiCC, sliderChange, createTable, midiIn, midiOut, notesOn, mParameterData };
 
 let midiIn = [];
 let midiOut = [];
@@ -12,9 +12,9 @@ let mTimbre2Channel = 1;
 let mNumCCTimbreParams;
 let mNumNrpnTimbreParams;
 
-if (typeof MK2_EDITOR_VANILLA === 'undefined') var MK2_EDITOR_VANILLA = false;
+//if (typeof MK2_EDITOR_VANILLA === 'undefined') var MK2_EDITOR_VANILLA = false;
 
-if (MK2_EDITOR_VANILLA)
+//if (MK2_EDITOR_VANILLA)
 {
     connect();
     loadJSON("https://raw.githubusercontent.com/microkorg2editor/microkorg2editor.github.io/main/parameterList.json");
